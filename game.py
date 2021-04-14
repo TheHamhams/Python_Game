@@ -2,7 +2,7 @@ import random
 
 active = True
 health = 3
-questions = [["what is 2 + 2", ["4", ["3", "5"]]], ["What is 3 + 4", ["7", ["6", "8"]]]]
+questions = [["What is 2 + 2", "4", ["3", "5"]], ["What is 3 + 4", "7", ["6", "8"]]]
 active_questions = questions
 
 def game_start():
@@ -11,7 +11,7 @@ def game_start():
     if start == "yes":
         print("Then lettuce begin! (yeah, it's one of those kind of games...)")
         next_question = active_questions[1]
-        prompt("what is 2 + 2", "4", ["3", "5"])
+        prompt(next_question[0], next_question[1], next_question[2])
     else:
         game_start()
 
@@ -23,8 +23,9 @@ def prompt(question, right, wrong_lst):
     if answer_lst[(int(answer) - 1)] == right:
         print("Great Job!")
     else:
-        print("Ouch")
+        global health
         health -= 1
+        print("Ouch")        
         print(health) 
 
 game_start()
